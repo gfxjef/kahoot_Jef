@@ -1,0 +1,25 @@
+# Dependencies
+node_modules/
+venv/
+env/
+__pycache__/
+*.pyc
+
+# Environment variables
+.env
+
+# Build outputs
+dist/
+build/
+
+# Database
+*.db
+*.sqlite3
+instance/
+
+# Logs
+*.log
+
+# IDEs
+.vscode/
+.idea/
