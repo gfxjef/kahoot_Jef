@@ -4,16 +4,25 @@ import { socket } from '../services/socket';
 export const GameContext = createContext();
 
 export const GameProvider = ({ children }) => {
-    const [gameState, setGameState] = useState({
-        isConnected: false,
-        gameId: null,
-        playerId: null,
-        nickname: '',
-        currentQuestion: null,
-        score: 0,
-        isGameStarted: false,
-        isGameOver: false
+    const [gameState, setGameState] = useState(() => {
+        const savedState = localStorage.getItem('gameState');
+        return savedState ? JSON.parse(savedState) : {
+            isConnected: false,
+            gameId: null,
+            playerId: null,
+            nickname: '',
+            pin: null,
+            currentQuestion: null,
+            score: 0,
+            isGameStarted: false,
+            isGameOver: false
+        };
     });
+
+    useEffect(() => {
+        console.log("GameContext State Updated:", gameState);
+        localStorage.setItem('gameState', JSON.stringify(gameState));
+    }, [gameState]);
 
     useEffect(() => {
         socket.on('connect', () => {

@@ -155,7 +155,7 @@ const Admin = () => {
                                                 borderLeft: '4px solid #4ade80'
                                             }}>
                                                 <div style={{ fontWeight: 'bold', marginBottom: '0.5rem', fontSize: '1.1rem' }}>
-                                                    {i + 1}. {q.text}
+                                                    {q.text}
                                                 </div>
                                                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.5rem', fontSize: '0.9rem' }}>
                                                     {q.options.map((opt, optIndex) => (
@@ -278,7 +278,22 @@ const Admin = () => {
                             </div>
 
                             {currentQuestion === 'GAME OVER' ? (
-                                <h3>¡Juego Terminado!</h3>
+                                <div style={{ textAlign: 'center' }}>
+                                    <h3>¡Juego Terminado!</h3>
+                                    <button onClick={() => {
+                                        // Reset state to initial values
+                                        setPin(null);
+                                        setGameId(null);
+                                        setIsGameStarted(false);
+                                        setCurrentQuestion(null);
+                                        setPlayers([]);
+                                        setLeaderboard([]);
+                                        setAddedQuestions([]);
+                                        setNewQuestion({ text: '', options: ['', '', '', ''], correct_index: 0 });
+                                    }} style={{ marginTop: '1rem', padding: '1rem 2rem', background: '#4ade80', color: '#064e3b', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: 'bold' }}>
+                                        Crear Nuevo Juego
+                                    </button>
+                                </div>
                             ) : (
                                 <div>
                                     <p>Pregunta Actual: {currentQuestion ? currentQuestion.text : 'Esperando...'}</p>
